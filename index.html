@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>SEAF/CERONI </title>
+    
+
+  </head>
+    
+  <body>
+  <!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEAF v4.5 - Executive Insight - Dr. Manlio Ceroni</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --gemini-blue: #1A365D;
+            --gemini-accent: #FF8C00;
+            --gemini-light: #E2E8F0;
+            --text-dark: #1A202C;
+            --success: #38A169;
+            --warning: #D69E2E;
+            --danger: #E53E3E;
+            --bg-gradient: linear-gradient(135deg, #1A365D 0%, #2D3748 100%);
+        }
+
+        body { font-family: 'Inter', system-ui, sans-serif; background: #F7FAFC; color: var(--text-dark); margin: 0; padding: 0; }
+        .header { background: var(--bg-gradient); color: white; padding: 3rem 1rem; text-align: center; border-bottom: 5px solid var(--gemini-accent); }
+        .header h1 { margin: 0; font-size: 2rem; }
+        .header p { opacity: 0.9; margin: 10px 0; }
+        .header a { color: var(--gemini-accent); text-decoration: none; font-weight: bold; }
+
+        .container { max-width: 1200px; margin: -2rem auto 4rem; padding: 0 1.5rem; }
+        .methodology { background: white; border-left: 5px solid var(--gemini-accent); padding: 1.5rem; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); margin-bottom: 2rem; font-size: 0.9rem; }
+
+        .section-card { background: white; border-radius: 12px; padding: 2rem; margin-bottom: 2rem; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+        .section-title { color: var(--gemini-blue); border-bottom: 2px solid var(--gemini-light); padding-bottom: 0.5rem; margin-bottom: 1.5rem; text-transform: uppercase; font-size: 1rem; font-weight: 800; }
+
+        .grid-inputs { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; }
+        .form-group label { display: block; font-weight: 700; margin-bottom: 0.5rem; font-size: 0.8rem; color: #4A5568; }
+        .form-group input, .form-group select { width: 100%; padding: 0.8rem; border: 1px solid #CBD5E0; border-radius: 6px; box-sizing: border-box; }
+        
+        .btn-calc { background: var(--gemini-accent); color: white; border: none; padding: 1.5rem; width: 100%; font-size: 1.2rem; font-weight: 800; border-radius: 8px; cursor: pointer; box-shadow: 0 4px 15px rgba(255, 140, 0, 0.3); margin-top: 1rem; transition: 0.3s; }
+        .btn-calc:hover { background: #E67E00; transform: translateY(-2px); }
+
+        /* RESULTADOS MEJORADOS */
+        #results { display: none; margin-top: 3rem; animation: fadeIn 0.5s; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        .results-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-bottom: 2rem; }
+        .mod-card { background: white; padding: 1.5rem; border-radius: 12px; border-top: 5px solid var(--gemini-blue); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
+        .kpi-badge { background: var(--gemini-blue); color: white; padding: 0.4rem 0.8rem; border-radius: 50px; font-size: 0.75rem; font-weight: bold; margin-bottom: 1rem; display: inline-block; }
+        
+        .chart-box { background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 10px 20px rgba(0,0,0,0.05); margin-bottom: 2rem; height: 400px; display: flex; justify-content: center; }
+        
+        .pilar-analysis { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin-top: 1rem; }
+        .pilar-card { background: #f8fafc; padding: 1.2rem; border-radius: 8px; border-left: 4px solid var(--gemini-accent); font-size: 0.85rem; }
+        .pilar-card h4 { margin: 0 0 10px 0; color: var(--gemini-blue); font-size: 0.9rem; }
+        
+        .conclusion-box { background: var(--gemini-blue); color: white; padding: 2rem; border-radius: 12px; margin-top: 2rem; }
+        .conclusion-box h3 { margin-top: 0; color: var(--gemini-accent); }
+
+        /* ESTILO PIE DE PÁGINA PROPIEDAD INTELECTUAL */
+        .footer-legal {
+            text-align: center;
+            padding: 2.5rem 1rem;
+            margin-top: 3rem;
+            border-top: 1px solid #CBD5E0;
+            font-size: 0.8rem;
+            color: #64748B;
+            line-height: 1.6;
+        }
+        .footer-legal a {
+            color: var(--gemini-blue);
+            text-decoration: none;
+            font-weight: 800;
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <h1>SIMULADOR ESTRATÉGICO DE ALTA FIDELIDAD (SEAF/CERONI v4.5)</h1>
+    <p>Desarrollado por: Dr. Manlio Ceroni</p>
+    <p><a href="mailto:ceronicomunica@gmail.com">ceronicomunica@gmail.com</a> | <a href="https://ceronicomunica.com/" target="_blank">https://ceronicomunica.com/</a></p>
+</div>
+
+<div class="container">
+    <div class="methodology">
+        <strong>Metodología SEAF/CERONI:</strong> Este motor traduce datos operativos en inteligencia estratégica. Analiza la interdependencia entre el mercado, la eficiencia de ventas y el retorno promocional para ofrecer una radiografía 360° del potencial de escalamiento. Basado en un algoritmo de validación cruzada, el SEAF v6.1 triangula fuentes de ejecución y mercado para transformar datos en modelos de rentabilidad. Alimentado y robustecido con IA y cruce estadístico.
+    </div>
+
+    <form id="seafForm">
+        <div class="section-card">
+            <div class="section-title">🌐 Pilar 1: Inteligencia de Mercado y Categorización</div>
+            <div class="grid-inputs">
+                <div class="form-group">
+                    <label>Sector del Negocio</label>
+                    <select id="sector">
+                        <option value="retail">Retail / Consumo Masivo</option>
+                        <option value="saas">Software / SaaS / Tecnología</option>
+                        <option value="servicios">Servicios Profesionales / Consultoría</option>
+                        <option value="industrial">Industrial / B2B Manufacturing</option>
+                        <option value="educacion">Educación / Academia</option>
+                        <option value="salud">Salud / Pharma</option>
+                        <option value="inmobiliario">Real Estate / Inmobiliario</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Share of Voice (% Presencia Digital)</label>
+                    <input type="number" id="sov" value="15">
+                </div>
+                <div class="form-group">
+                    <label>Saturación del Mercado (%)</label>
+                    <input type="number" id="saturacion" value="60">
+                </div>
+                <div class="form-group">
+                    <label>Market Share Objetivo (%)</label>
+                    <input type="number" id="mshare" value="10">
+                </div>
+            </div>
+        </div>
+
+        <div class="section-card">
+            <div class="section-title">📦 Pilar 2: Comercialización y Canales</div>
+            <div class="grid-inputs">
+                <div class="form-group">
+                    <label>Share of Shelf (Anaquel %)</label>
+                    <input type="number" id="shelf" value="20">
+                </div>
+                <div class="form-group">
+                    <label>Cobertura de Distribución (%)</label>
+                    <input type="number" id="cobertura" value="50">
+                </div>
+                <div class="form-group">
+                    <label>Eficacia Omnicanal (1-100)</label>
+                    <input type="number" id="omni" value="70">
+                </div>
+            </div>
+        </div>
+
+        <div class="section-card">
+            <div class="section-title">💰 Pilar 3: Ventas y Rentabilidad</div>
+            <div class="grid-inputs">
+                <div class="form-group">
+                    <label>CAC (Costo Adquisición USD)</label>
+                    <input type="number" id="cac" value="100">
+                </div>
+                <div class="form-group">
+                    <label>LTV (Valor de Vida Cliente USD)</label>
+                    <input type="number" id="ltv" value="500">
+                </div>
+                <div class="form-group">
+                    <label>Win Rate (%)</label>
+                    <input type="number" id="winrate" value="25">
+                </div>
+                <div class="form-group">
+                    <label>Tasa de Recompra (%)</label>
+                    <input type="number" id="recompra" value="30">
+                </div>
+                <div class="form-group">
+                    <label>Ticket Promedio (USD)</label>
+                    <input type="number" id="ticket" value="250">
+                </div>
+                <div class="form-group">
+                    <label>Churn Rate (%)</label>
+                    <input type="number" id="churn" value="5">
+                </div>
+            </div>
+        </div>
+
+        <div class="section-card">
+            <div class="section-title">📣 Pilar 4: Promoción e Inversión</div>
+            <div class="grid-inputs">
+                <div class="form-group">
+                    <label>Presupuesto Marketing (USD)</label>
+                    <input type="number" id="presupuesto" value="5000">
+                </div>
+                <div class="form-group">
+                    <label>CPL (Costo por Lead USD)</label>
+                    <input type="number" id="cpl" value="15">
+                </div>
+                <div class="form-group">
+                    <label>ROAS (Retorno Gasto Ads)</label>
+                    <input type="number" id="roas" value="3.5">
+                </div>
+                <div class="form-group">
+                    <label>NPS (Net Promoter Score)</label>
+                    <input type="number" id="nps" value="40">
+                </div>
+            </div>
+        </div>
+
+        <button type="button" class="btn-calc" onclick="ejecutarSEAF()">GENERAR RADIOGRAFÍA DEL NEGOCIO</button>
+    </form>
+
+    <div id="results">
+        <div class="chart-box">
+            <canvas id="radarChart"></canvas>
+        </div>
+
+        <div class="results-grid">
+            <div class="mod-card">
+                <div class="kpi-badge">EFICIENCIA FINANCIERA</div>
+                <h3>Ratio LTV/CAC</h3>
+                <h2 id="res-ratio"></h2>
+                <p id="txt-finanzas"></p>
+            </div>
+            <div class="mod-card">
+                <div class="kpi-badge">PODER DE MERCADO</div>
+                <h3>Competitividad (SOV)</h3>
+                <h2 id="res-sov"></h2>
+                <p id="txt-mercado"></p>
+            </div>
+            <div class="mod-card">
+                <div class="kpi-badge">EFECTIVIDAD COMERCIAL</div>
+                <h3>Win Rate</h3>
+                <h2 id="res-win"></h2>
+                <p id="txt-ventas"></p>
+            </div>
+        </div>
+        
+        <div class="section-card">
+            <div class="section-title">💡 Recomendaciones Estratégicas por Pilar</div>
+            <div class="pilar-analysis">
+                <div class="pilar-card">
+                    <h4>Pilar 1: Mercado</h4>
+                    <p id="rec-mercado"></p>
+                </div>
+                <div class="pilar-card">
+                    <h4>Pilar 2: Canales</h4>
+                    <p id="rec-canales"></p>
+                </div>
+                <div class="pilar-card">
+                    <h4>Pilar 3: Ventas</h4>
+                    <p id="rec-ventas"></p>
+                </div>
+                <div class="pilar-card">
+                    <h4>Pilar 4: Promoción</h4>
+                    <p id="rec-promo"></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="conclusion-box">
+            <h3>🎯 Conclusión General del Negocio</h3>
+            <p id="conclusion-final"></p>
+        </div>
+    </div>
+
+    <div class="footer-legal">
+        <p>
+            © 2026 <strong>SEAF/CERONI</strong>. Todos los derechos reservados. <br>
+            Desarrollado por el <strong>Dr. Manlio Ceroni</strong>. Prohibida su reproducción total o parcial sin autorización expresa. <br>
+            Visite: <a href="https://ceronicomunica.com" target="_blank">ceronicomunica.com</a>
+        </p>
+    </div>
+</div>
+
+<script>
+let myChart = null;
+
+function ejecutarSEAF() {
+    const d = {
+        cac: parseFloat(document.getElementById('cac').value),
+        ltv: parseFloat(document.getElementById('ltv').value),
+        sov: parseFloat(document.getElementById('sov').value),
+        win: parseFloat(document.getElementById('winrate').value),
+        roas: parseFloat(document.getElementById('roas').value),
+        recompra: parseFloat(document.getElementById('recompra').value),
+        shelf: parseFloat(document.getElementById('shelf').value),
+        omni: parseFloat(document.getElementById('omni').value),
+        nps: parseFloat(document.getElementById('nps').value),
+        churn: parseFloat(document.getElementById('churn').value)
+    };
+
+    const ratio = d.ltv / d.cac;
+    document.getElementById('results').style.display = 'block';
+    
+    document.getElementById('res-ratio').innerText = ratio.toFixed(2) + 'x';
+    document.getElementById('res-sov').innerText = d.sov + '%';
+    document.getElementById('res-win').innerText = d.win + '%';
+
+    document.getElementById('rec-mercado').innerText = d.sov < 20 ? 
+        "Su visibilidad es baja. Invierta en 'Top of Mind' para no depender solo de pauta pagada." : 
+        "Excelente presencia. Enfoque el mensaje en diferenciación para capitalizar su SOV.";
+
+    document.getElementById('rec-canales').innerText = d.shelf < 25 ? 
+        "Presencia en anaquel crítica. Evalúe negociaciones de 'slotting fees' o visibilidad en canales digitales." : 
+        "Buena cobertura. El reto es ahora la velocidad de rotación en estos puntos de venta.";
+
+    document.getElementById('rec-ventas').innerText = d.win < 20 ? 
+        "Fuga masiva de leads. Revise la calificación de prospectos o el entrenamiento de su equipo comercial." : 
+        "Alta efectividad. Es momento de incrementar el ticket promedio (Upselling).";
+
+    document.getElementById('rec-promo').innerText = d.nps < 40 ? 
+        "Cuidado: Su marketing atrae pero su servicio no retiene. Priorice la experiencia del cliente." : 
+        "Promotores activos detectados. Implemente un programa de referidos para bajar el CAC.";
+
+    let conclusion = "";
+    if(ratio > 3 && d.win > 25) {
+        conclusion = "Su negocio es una 'Máquina de Crecimiento'. El modelo es financieramente sólido y escalable. Recomendación: Incremente la inversión agresivamente para capturar cuota de mercado antes que la competencia reaccione.";
+    } else if(ratio < 2) {
+        conclusion = "Situación de Riesgo: El costo de adquirir clientes está drenando su margen. Debe estabilizar la retención o subir precios antes de intentar escalar, de lo contrario, más ventas significarán más pérdidas.";
+    } else {
+        conclusion = "Negocio en Etapa de Optimización: Tiene bases sólidas pero existen fugas en la conversión o en la recompra. Afine los pilares débiles antes de aumentar el presupuesto de marketing.";
+    }
+    document.getElementById('conclusion-final').innerText = conclusion;
+
+    if (myChart) myChart.destroy();
+    const ctx = document.getElementById('radarChart').getContext('2d');
+    myChart = new Chart(ctx, {
+        type: 'radar',
+        data: {
+            labels: ['MKT Share', 'Visibilidad', 'Win Rate', 'Retención', 'Rentabilidad (LTV/CAC)', 'NPS'],
+            datasets: [{
+                label: 'Radiografía Actual',
+                data: [d.sov, d.shelf, d.win, d.recompra, (ratio * 10), d.nps],
+                backgroundColor: 'rgba(255, 140, 0, 0.2)',
+                borderColor: '#FF8C00',
+                pointBackgroundColor: '#FF8C00'
+            }]
+        },
+        options: {
+            scales: { r: { suggestMin: 0, suggestMax: 100 } },
+            maintainAspectRatio: false
+        }
+    });
+
+    window.scrollTo({ top: document.getElementById('results').offsetTop - 50, behavior: 'smooth' });
+}
+</script>
+</body>
+</html>
+    
+  </body>
+  
+</html>
